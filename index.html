@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        @import url('Game\ of\ Thrones.ttf');
+        h1, h2, h3{
+            font-family:'Game of Thrones';
+        }
+        h4, h5, h6{
+            font-family:fantasy;
+        }
+    </style>
+
+    <title>Game of Thrones</title>
+    <audio autoplay>
+        <source src="GOT theme.mp3" type="audio/mpeg">
+    </audio>
+
+</head>
+    <body>
+        <div class="row" style="background-image: url(https://cdn.wallpapersafari.com/92/27/aGwr1x.jpg); background-size:cover; background-position: center; background-repeat: no-repeat; min-height: 1000px;">
+            <div class="col-2 bg-transparent px-2 m-0"></div>
+            <div class="col-8 text-center text-light align-items-center" style="opacity: 70%;" id="container">
+                <br><br>
+                <h1 id="title"></h1>
+                <br>
+                <div class="row justify-content-center" id="casas">
+                    <div class="col-auto p-3">
+                        <img src="17.png" alt="baratheon" class="d-block" width="250px" id="17">
+                    </div>
+                    <div class="col-auto p-3">
+                        <img src="229.png" alt="lannister" class="d-block" width="250px" id="229">
+                    </div>
+                </div>
+                <div class="row justify-content-center" id="casas">
+                    <div class="col-auto p-3">
+                        <img src="362.png" alt="stark" class="d-block" width="250px" id="362">
+                    </div>
+                    <div class="col-auto p-3">
+                        <img src="378.png" alt="targaryen" class="d-block" width="250px" id="378">
+                    </div>
+                </div>
+                
+                <h5 class="py-4">Select your house</h5>
+                <div class="row">
+                    <div class="col-2 bg-transparent p-0 m-0"></div>
+                    <div class="col-8 px-4" id="content">
+                        <h3 id="name"></h3>                       
+                        <h5 id="titles"></h5>
+                        <br>
+                        <h1 id="words"></h1>
+                        
+                    </div>
+                    <div class="col-2 bg-transparent p-0 m-0"></div>
+                </div>
+
+            </div>
+            <div class="col-3 bg-transparent p-0 m-0"></div>
+        </div>
+        
+    </body>
+    <script>
+        $(document).ready(function() {
+            $('img').on('click', function() {
+                $('#name, #words, #titles, #title').html('');
+                $('#17, #229, #362, #378').attr('style','');
+                const casa = $(this).attr('id');
+                console.log(casa);
+                let house={};
+                let name=0;
+                let words=0;
+                let titles=0;
+                if (casa=='17') {
+                    $.get('https://anapioficeandfire.com/api/houses/'+casa+'/', function(information) {
+                    house = information;
+                    name = (information.name);
+                    words = (information.words);
+                    titles = (information.titles);
+                    $('#title').append('<span class="text-dark" px-4">GAME OF THRONES</span>');
+                    $('#name').append('<span class="text-dark">'+name+'</span>');
+                    $('#words').append('<span class="text-dark">'+words+'</span>');
+                    $('#titles').append('<span class="text-dark">'+titles+'</span>');
+                    $('#escudo').attr('src',casa+'.png');
+                    $('#container').attr('class','col-8 bg-warning text-center text-dark').attr('style','opacity: 70%');
+                    $('#362, #229, #378').attr('style','opacity:30%');
+                    });
+                }
+                else if (casa=='229') {
+                    $.get('https://anapioficeandfire.com/api/houses/'+casa+'/', function(information) {
+                    house = information;
+                    name = (information.name);
+                    words = (information.words);
+                    titles = (information.titles);
+                    $('#title').append('<span class="text-warning" px-4">GAME OF THRONES</span>');
+                    $('#name').append('<span class="text-warning">'+name+'</span>');
+                    $('#words').append('<span class="text-warning">'+words+'</span>');
+                    $('#titles').append('<span class="text-warning">'+titles+'</span>');
+                    $('#escudo').attr('src',casa+'.png');
+                    $('#container').attr('class','col-8 bg-danger text-center text-warning').attr('style','opacity: 70%');
+                    $('#17, #362, #378').attr('style','opacity:30%');
+                    });
+                }
+                else if (casa=='362') {
+                    $.get('https://anapioficeandfire.com/api/houses/'+casa+'/', function(information) {
+                    house = information;
+                    name = (information.name);
+                    words = (information.words);
+                    titles = (information.titles);
+                    $('#title').append('<span class="text-dark" px-4">GAME OF THRONES</span>');
+                    $('#name').append('<span class="text-dark">'+name+'</span>');
+                    $('#words').append('<span class="text-dark">'+words+'</span>');
+                    $('#titles').append('<span class="text-dark">'+titles+'</span>');
+                    $('#escudo').attr('src',casa+'.png');
+                    $('#container').attr('class','col-8 bg-light text-center').attr('style','opacity: 70%');
+                    });
+                    $('#17, #229, #378').attr('style','opacity:30%');
+                }
+                else if (casa=='378') {
+                    $.get('https://anapioficeandfire.com/api/houses/'+casa+'/', function(information) {
+                    house = information;
+                    name = (information.name);
+                    words = (information.words);
+                    titles = (information.titles);
+                    $('#title').append('<span class="text-danger" px-4">GAME OF THRONES</span>');
+                    $('#name').append('<span class="text-danger px-4">'+name+'</span>');
+                    $('#words').append('<span class="text-danger px-4">'+words+'</span>');
+                    $('#titles').append('<span class="text-danger px-4">'+titles+'</span>');
+                    $('#escudo').attr('src',casa+'.png');
+                    $('#container').attr('class','col-8 bg-dark text-center text-danger').attr('style','opacity: 70%');
+                    $('#17, #229, #362').attr('style','opacity:30%');
+                    });
+                };
+            });
+        });
+
+    </script>
+
+</html>
